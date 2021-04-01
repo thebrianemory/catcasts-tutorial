@@ -10,9 +10,10 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :catcasts, CatcastsWeb.Endpoint,
-  http: [port: 8080],
   load_from_system_env: true,
-  url: [host: "catcasts.com", port: 80],
+  http: [port: {:system, "PORT"}],
+  url: [scheme: "https", host: "powerful-headland-01356.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 config :catcasts, Catcasts.Repo,
